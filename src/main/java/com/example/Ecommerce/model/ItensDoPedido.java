@@ -20,7 +20,7 @@ public class ItensDoPedido {
 
 
     private Pedido pedidoId;
-    private Produto produtoId;
+    private Produto produtoID;
     private Integer quantidade;
     private BigDecimal preco;
 
