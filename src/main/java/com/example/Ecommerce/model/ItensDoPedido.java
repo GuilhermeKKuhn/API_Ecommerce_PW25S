@@ -18,10 +18,14 @@ public class ItensDoPedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
+    @ManyToOne
     private Pedido pedidoId;
+
+    @OneToOne
     private Produto produtoID;
+
     private Integer quantidade;
+
     private BigDecimal preco;
 
 }
