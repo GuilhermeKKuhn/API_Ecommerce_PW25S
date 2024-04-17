@@ -1,6 +1,5 @@
 package com.example.Ecommerce.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,6 +28,6 @@ public class Categoria {
 
     @NotNull
     @Size(min = 2, max = 100)
-    private String nome;
+    private String categoria;
     
 }

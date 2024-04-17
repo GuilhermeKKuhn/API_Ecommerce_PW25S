@@ -48,5 +48,5 @@ public class Produto {
 
     @NotNull
     @ManyToOne
-    private Categoria categoriaId;
+    private Categoria categoria;
 }
