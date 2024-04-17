@@ -19,13 +19,20 @@ public class ItensDoPedido {
     private Long id;
 
     @ManyToOne
-    private Pedido pedidoId;
+    private Pedido pedido;
 
     @OneToOne
-    private Produto produtoID;
+    private Produto produto;
 
     private Integer quantidade;
 
     private BigDecimal preco;
+
+    public void CalcularPreco() {
+        if (produto.getPreco() != null && quantidade != null) {
+
+            preco = produto.getPreco().multiply(new BigDecimal(quantidade));
+        }
+    }
 
 }

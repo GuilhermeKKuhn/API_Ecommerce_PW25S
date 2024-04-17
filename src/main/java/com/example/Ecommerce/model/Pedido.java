@@ -3,9 +3,8 @@ package com.example.Ecommerce.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,12 +22,12 @@ public class Pedido {
 
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    private Date data;
+    private LocalDateTime data;
 
     @NotNull
     @ManyToOne
-    private Usuario usuarioId;
+    private Usuario usuario;
 
-    @OneToMany(mappedBy = "pedidoId")
+    @OneToMany(mappedBy = "pedido")
     private List<ItensDoPedido> itensPedido = new ArrayList<>();
 }
