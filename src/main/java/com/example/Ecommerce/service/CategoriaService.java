@@ -1,7 +1,6 @@
 package com.example.Ecommerce.service;
 
 import com.example.Ecommerce.model.Categoria;
-import com.example.Ecommerce.model.Usuario;
 import com.example.Ecommerce.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,7 +41,7 @@ public class CategoriaService {
 
     public Categoria update(Categoria categoria) {
         Categoria categoriaAux = this.findById(categoria.getId());
-        categoriaAux.setNome(categoria.getNome());
+        categoriaAux.setCategoria(categoria.getCategoria());
         return categoriaRepository.save(categoriaAux);
     }
 }
