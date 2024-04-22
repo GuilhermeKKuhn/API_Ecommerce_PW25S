@@ -40,9 +40,8 @@ public class ProdutoService {
         }
     }
 
-    public List<Produto> findByCategoria(Categoria categoria) {
-        List<Produto> produtos = this.produtoRepository.findByCategoria(categoria);
-        return produtos;
+    public List<Produto> findProdutosByCategoriaId(Long categoriaId) {
+        return produtoRepository.findByCategoriaId(categoriaId);
     }
 
     public Produto update(Produto produto) {
