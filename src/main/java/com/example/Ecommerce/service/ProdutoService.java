@@ -40,8 +40,8 @@ public class ProdutoService {
         }
     }
 
-    public List<Produto>FindByCategoria(Categoria categoria) {
-        return this.produtoRepository.findByCategoria(categoria);
+    public List<Produto> findProdutosByCategoriaId(Long categoriaId) {
+        return produtoRepository.findByCategoriaId(categoriaId);
     }
 
     public Produto update(Produto produto) {
@@ -53,7 +53,7 @@ public class ProdutoService {
         return this.produtoRepository.save(produtoaux);
     }
 
-    public List<Produto> findByNome(String nome) {
+    public Produto findByNome(String nome) {
         return this.produtoRepository.findByNome(nome);
     }
 }
