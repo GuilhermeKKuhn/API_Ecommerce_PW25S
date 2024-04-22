@@ -2,6 +2,7 @@ package com.example.Ecommerce.Controller;
 
 import com.example.Ecommerce.model.Categoria;
 import com.example.Ecommerce.model.Produto;
+import com.example.Ecommerce.service.CategoriaService;
 import com.example.Ecommerce.service.ProdutoService;
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class ProdutoController {
 
     @Autowired
     private ProdutoService produtoService;
+
+    @Autowired
+    private CategoriaService categoriaService;
 
     @GetMapping("/{id}")
     public ResponseEntity<Produto> findById(@PathVariable Long id) {
@@ -45,17 +49,27 @@ public class ProdutoController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/{id}1")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         this.produtoService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
-    //@GetMapping("/categoriaId/{id}")
-    //public ResponseEntity<List<Produto>> findByCategoria(@RequestParam Long categoriaId) {
-    //    List<Produto> produtos = produtoService.findProdutosByCategoriaId(categoriaId);
-    //    return ResponseEntity.ok().body(produtos);
-    //}
+    @GetMapping("/categoriaId/{id}")
+    public ResponseEntity<List<Produto>> findProdutosByCategoria(@PathVariable("id") Long categoriaId) {
+        Categoria categoria = categoriaService.findById(categoriaId);
+        if (categoria == null) {
+            return ResponseEntity.notFound().build();
+        }
+        List<Produto> produtos = produtoService.FindByCategoria(categoria);
+        return ResponseEntity.ok(produtos);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Produto>> findProdutosByNome(@RequestParam String nome) {
+        List<Produto> produtos = this.produtoService.findByNome(nome);
+        return ResponseEntity.ok(produtos);
+    }
 
 
 
