@@ -44,4 +44,5 @@ public class CategoriaService {
         categoriaAux.setCategoria(categoria.getCategoria());
         return categoriaRepository.save(categoriaAux);
     }
+
 }
