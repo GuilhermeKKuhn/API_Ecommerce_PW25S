@@ -3,20 +3,28 @@ package com.example.Ecommerce.service;
 import com.example.Ecommerce.model.Usuario;
 import com.example.Ecommerce.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.management.RuntimeErrorException;
 import java.util.Optional;
 
 @Service
 public class UsuarioService {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+
+    private final UsuarioRepository usuarioRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public UsuarioService(UsuarioRepository usuarioRepository) {
+
+        this.usuarioRepository = usuarioRepository;
+        bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    }
 
     @Transactional
     public Usuario save(Usuario usuario) {
+        usuario.setPassword( bCryptPasswordEncoder.encode(usuario.getPassword()) );
         usuario = usuarioRepository.save(usuario);
         return usuario;
     }
@@ -31,8 +39,8 @@ public class UsuarioService {
     @Transactional
     public Usuario update(Usuario usuario) {
         Usuario newUsuario = findById(usuario.getId());
-        newUsuario.setNome(usuario.getNome());
-        newUsuario.setSenha(usuario.getSenha());
+        newUsuario.setUsername(usuario.getUsername());
+        newUsuario.setPassword(usuario.getPassword());
         return usuarioRepository.save(newUsuario);
     }
 

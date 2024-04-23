@@ -57,9 +57,9 @@ public class WebSecurity {
 
         //Define regras de autorização para diferentes tipos de requisições HTTP
         http.authorizeHttpRequests((authorize) -> authorize
-                .requestMatchers(HttpMethod.POST, "/users/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/categories/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/products/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/usuario/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/categoria/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/produto/**").permitAll()
                 .anyRequest().authenticated()
         );
 

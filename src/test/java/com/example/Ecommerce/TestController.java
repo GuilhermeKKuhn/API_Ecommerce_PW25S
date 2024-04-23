@@ -60,7 +60,7 @@ public class TestController {
     @Test
     public void postUsuario_quandoHouverUsuarioNulo_deveRetornar400BadRequest() {
         Usuario usuario = criaUsuarioValido();
-        usuario.setNome(null);
+        usuario.setUsername(null);
         ResponseEntity<Object> response = testRestTemplate.postForEntity(API_USUARIOS, usuario, Object.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         assertThat(response.getBody()).isNotNull();
@@ -78,7 +78,7 @@ public class TestController {
     @Test
     public void postUsuario_quandoHouverSenhaNula_deveRetornar400BadRequest() {
         Usuario usuario = criaUsuarioValido();
-        usuario.setSenha(null);
+        usuario.setPassword(null);
         ResponseEntity<Object> response =
                 testRestTemplate.postForEntity(API_USUARIOS, usuario, Object.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
@@ -106,8 +106,8 @@ public class TestController {
 
     private Usuario criaUsuarioValido() {
         return Usuario.builder()
-                .nome("teste usuario")
-                .senha("P4ssword").build();
+                .username("teste usuario")
+                .password("P4ssword").build();
     }
 
     private Produto criaProdutoValido() {

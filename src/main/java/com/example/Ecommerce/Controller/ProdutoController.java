@@ -61,7 +61,7 @@ public class ProdutoController {
         if (categoria == null) {
             return ResponseEntity.notFound().build();
         }
-        List<Produto> produtos = produtoService.FindByCategoria(categoria);
+        List<Produto> produtos = produtoService.findByCategoria(categoria);
         return ResponseEntity.ok(produtos);
     }
 
@@ -70,6 +70,7 @@ public class ProdutoController {
         List<Produto> produtos = this.produtoService.findByNome(nome);
         return ResponseEntity.ok(produtos);
     }
+
 
 
 
