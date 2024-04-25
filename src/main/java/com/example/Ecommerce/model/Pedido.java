@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "tb_pedido")
+@Table(name = "pedido")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,7 +26,7 @@ public class Pedido {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "tb_user")
+    @JoinColumn(name = "usuario")
     private Usuario usuario;
 
     @OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

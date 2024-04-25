@@ -20,7 +20,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 @Entity
-@Table(name = "tb_user")
+@Table(name = "usuario")
 @Getter
 @Setter
 @AllArgsConstructor

@@ -60,7 +60,6 @@ public class WebSecurity {
                 .requestMatchers(HttpMethod.POST, "/usuario/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/categoria/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/produto/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/pedido/**").permitAll()
                 .anyRequest().authenticated()
         );
 

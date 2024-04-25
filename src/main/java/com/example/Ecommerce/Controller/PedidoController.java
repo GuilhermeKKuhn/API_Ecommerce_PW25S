@@ -40,15 +40,15 @@ public class PedidoController {
         return ResponseEntity.ok(GenericResponse.builder().message("Pedido salvo com sucesso.").build());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<PedidoDto> findOne(@PathVariable Long id) {
-        PedidoDto pedido = pedidoService.findOne(id);
+        PedidoDto pedido = pedidoService.findOne(id, usuarioService);
         return pedido != null ? ResponseEntity.ok(pedido) : ResponseEntity.noContent().build();
     }
 
     @GetMapping("/meuspedidos")
     public ResponseEntity<List<PedidoDto>> findPedidos() {
-        return ResponseEntity.ok(pedidoService.findPedidos());
+        return ResponseEntity.ok(pedidoService.findPedidos(usuarioService));
     }
 
 
