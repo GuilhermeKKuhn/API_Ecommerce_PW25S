@@ -19,20 +19,16 @@ public class ItensDoPedido {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "tb_pedido")
     private Pedido pedido;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "tb_produto")
     private Produto produto;
 
     private Integer quantidade;
 
     private BigDecimal preco;
 
-    public void CalcularPreco() {
-        if (produto.getPreco() != null && quantidade != null) {
-
-            preco = produto.getPreco().multiply(new BigDecimal(quantidade));
-        }
-    }
 
 }

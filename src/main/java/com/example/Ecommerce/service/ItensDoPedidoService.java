@@ -27,8 +27,4 @@ public class ItensDoPedidoService {
         }
     }
 
-    public ItensDoPedido save(ItensDoPedido itensDoPedido) {
-        itensDoPedido.CalcularPreco();
-        return itensDoPedidoRepository.save(itensDoPedido);
-    }
 }

@@ -3,6 +3,8 @@ package com.example.Ecommerce.service;
 import com.example.Ecommerce.model.Usuario;
 import com.example.Ecommerce.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,5 +53,11 @@ public class UsuarioService {
         }catch (Exception e){
             throw new RuntimeException("Não é possivel excluir pois está relacionado com outra entidade");
         }
+    }
+
+    public Usuario getUserLogado() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        return usuarioRepository.findByUsername(username);
     }
 }

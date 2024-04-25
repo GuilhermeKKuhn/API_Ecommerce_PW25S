@@ -38,7 +38,7 @@ public class ProdutoController {
     @PostMapping
     public ResponseEntity<Produto> create(@RequestBody Produto produto) {
         this.produtoService.save(produto);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("i{id}").buildAndExpand(produto.getId()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(produto.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 

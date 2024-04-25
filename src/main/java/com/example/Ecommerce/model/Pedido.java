@@ -26,8 +26,9 @@ public class Pedido {
 
     @NotNull
     @ManyToOne
+    @JoinColumn(name = "tb_user")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ItensDoPedido> itensPedido = new ArrayList<>();
 }
