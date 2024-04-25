@@ -7,6 +7,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,4 +24,8 @@ public class PedidoDto {
 
     @ManyToOne
     private UsuarioDto usuario;
+
+    @ManyToOne
+    private List<ItensDoPedidoDto> itensPedido;
+
 }

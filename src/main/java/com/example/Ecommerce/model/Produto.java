@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "tb_produto")
+@Table(name = "produto")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -42,6 +42,6 @@ public class Produto {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "tb_categoria")
+    @JoinColumn(name = "categoria")
     private Categoria categoria;
 }

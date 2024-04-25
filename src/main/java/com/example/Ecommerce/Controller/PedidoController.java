@@ -21,34 +21,28 @@ import java.util.List;
 public class PedidoController {
 
     private final PedidoService pedidoService;
-    private final UsuarioService usuarioService;
+
 
     @Autowired
-    public PedidoController(PedidoService pedidoService, UsuarioService usuarioService) {
+    public PedidoController(PedidoService pedidoService) {
         this.pedidoService = pedidoService;
-        this.usuarioService = usuarioService;
     }
 
     @PostMapping
     public ResponseEntity<GenericResponse> create(@RequestBody Pedido pedido) {
-        Usuario usuarioLogado = usuarioService.getUserLogado();
-        if (usuarioLogado == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(GenericResponse.builder().message("Usuário não encontrado ou não logado.").build());
-        }
-        pedido.setUsuario(usuarioLogado);
         pedidoService.save(pedido);
         return ResponseEntity.ok(GenericResponse.builder().message("Pedido salvo com sucesso.").build());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<PedidoDto> findOne(@PathVariable Long id) {
-        PedidoDto pedido = pedidoService.findOne(id, usuarioService);
+        PedidoDto pedido = pedidoService.findOne(id);
         return pedido != null ? ResponseEntity.ok(pedido) : ResponseEntity.noContent().build();
     }
 
     @GetMapping("/meuspedidos")
     public ResponseEntity<List<PedidoDto>> findPedidos() {
-        return ResponseEntity.ok(pedidoService.findPedidos(usuarioService));
+        return ResponseEntity.ok(pedidoService.findPedidos());
     }
 
 

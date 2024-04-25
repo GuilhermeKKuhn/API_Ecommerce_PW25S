@@ -21,6 +21,9 @@ public class PedidoService {
     private final PedidoRepository pedidoRepository;
     private final ProdutoRepository produtoRepository;
 
+    @Autowired
+    private  UsuarioService usuarioService;
+
     private final ModelMapper modelMapper;
 
     private PedidoDto convertToDto(Pedido pedido) {
@@ -33,7 +36,7 @@ public class PedidoService {
         this.modelMapper = modelMapper;
     }
 
-    public PedidoDto findOne(Long id, UsuarioService   usuarioService) {
+    public PedidoDto findOne(Long id) {
         Pedido pedido = pedidoRepository.findByIdAndUsuario(id, usuarioService.getUserLogado());
         if (pedido != null) {
             return convertToDto(pedido);
@@ -42,12 +45,12 @@ public class PedidoService {
     }
 
     public Pedido save(Pedido pedido) {
-        //Usuario usuario =  usuarioService.getUserLogado();
-        //if (usuario == null) {
-            //throw new RuntimeException("Usuário não encontrado ou não logado.");
-        //}
+        Usuario usuario =  usuarioService.getUserLogado();
+        if (usuario == null) {
+            throw new RuntimeException("Usuário não encontrado ou não logado.");
+        }
 
-        pedido.setUsuario(pedido.getUsuario());
+        pedido.setUsuario(usuario);
 
         if (pedido.getItensPedido() != null){
             for (ItensDoPedido itens : pedido.getItensPedido()) {
@@ -67,7 +70,7 @@ public class PedidoService {
         return pedidoRepository.save(pedido);
     }
 
-    public List<PedidoDto> findPedidos(UsuarioService   usuarioService) {
+    public List<PedidoDto> findPedidos() {
         return pedidoRepository.findByUsuario(usuarioService.getUserLogado()).stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
