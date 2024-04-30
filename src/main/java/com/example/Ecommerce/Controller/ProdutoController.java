@@ -17,11 +17,13 @@ import java.util.List;
 @RequestMapping("/produto")
 public class ProdutoController {
 
-    @Autowired
-    private ProdutoService produtoService;
+    private final CategoriaService categoriaService;
+    private final ProdutoService produtoService;
 
-    @Autowired
-    private CategoriaService categoriaService;
+    public ProdutoController(CategoriaService categoriaService, ProdutoService produtoService) {
+        this.categoriaService = categoriaService;
+        this.produtoService = produtoService;
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Produto> findById(@PathVariable Long id) {

@@ -20,20 +20,18 @@ public class PedidoService {
 
     private final PedidoRepository pedidoRepository;
     private final ProdutoRepository produtoRepository;
-
-    @Autowired
-    private  UsuarioService usuarioService;
-
     private final ModelMapper modelMapper;
+    private final UsuarioService usuarioService;
 
-    private PedidoDto convertToDto(Pedido pedido) {
-        return modelMapper.map(pedido, PedidoDto.class);
-    }
-
-    public PedidoService(PedidoRepository pedidoRepository , ProdutoRepository produtoRepository, ModelMapper modelMapper) {
+    public PedidoService(PedidoRepository pedidoRepository , ProdutoRepository produtoRepository, ModelMapper modelMapper, UsuarioService usuarioService) {
         this.pedidoRepository = pedidoRepository;
         this.produtoRepository = produtoRepository;
         this.modelMapper = modelMapper;
+        this.usuarioService = usuarioService;
+    }
+
+    private PedidoDto convertToDto(Pedido pedido) {
+        return modelMapper.map(pedido, PedidoDto.class);
     }
 
     public PedidoDto findOne(Long id) {

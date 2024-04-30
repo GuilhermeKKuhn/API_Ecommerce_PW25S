@@ -14,8 +14,11 @@ import java.util.List;
 @RequestMapping("/categoria")
 public class CategoriaController {
 
-    @Autowired
-    private CategoriaService categoriaService;
+    private final CategoriaService categoriaService;
+
+    public CategoriaController(CategoriaService categoriaService) {
+        this.categoriaService = categoriaService;
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Categoria> findById(@PathVariable Long id) {

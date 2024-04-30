@@ -23,7 +23,6 @@ public class PedidoController {
     private final PedidoService pedidoService;
 
 
-    @Autowired
     public PedidoController(PedidoService pedidoService) {
         this.pedidoService = pedidoService;
     }

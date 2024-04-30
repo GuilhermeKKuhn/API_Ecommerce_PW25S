@@ -11,8 +11,11 @@ import java.util.Optional;
 @Service
 public class CategoriaService {
 
-    @Autowired
-    private CategoriaRepository categoriaRepository;
+   private final CategoriaRepository categoriaRepository;
+
+   public CategoriaService(CategoriaRepository categoriaRepository) {
+       this.categoriaRepository = categoriaRepository;
+   }
 
     public List<Categoria> findAll() {
         return categoriaRepository.findAll();
