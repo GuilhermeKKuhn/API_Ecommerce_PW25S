@@ -41,6 +41,15 @@ public class Usuario implements UserDetails {
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$")
     private String password;
 
+    @NotNull
+    private String email;
+
+    @NotNull
+    private String endereco;
+
+    @NotNull
+    private String telefone;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return AuthorityUtils.createAuthorityList("ROLE_USER");

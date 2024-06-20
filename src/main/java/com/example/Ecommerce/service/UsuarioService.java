@@ -37,7 +37,8 @@ public class UsuarioService {
         ));
     }
 
-    @Transactional
+    //NAO A NECESSIDADE DESES 2 METODOS A NAO SER QUE O USUARIO NECESSITE EDITAR O CADASTRO, VERIFICAR COM O LUCAS SE VI TER ESSA FUNCIONALIDADE
+    /*@Transactional
     public Usuario update(Usuario usuario) {
         Usuario newUsuario = findById(usuario.getId());
         newUsuario.setUsername(usuario.getUsername());
@@ -52,7 +53,7 @@ public class UsuarioService {
         }catch (Exception e){
             throw new RuntimeException("Não é possivel excluir pois está relacionado com outra entidade");
         }
-    }
+    }*/
 
     public Usuario getUserLogado() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

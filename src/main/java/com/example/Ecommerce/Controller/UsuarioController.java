@@ -32,7 +32,9 @@ public class UsuarioController {
         return ResponseEntity.created(uri).build();
     }
 
-    @PutMapping("/{id}")
+
+    // NAO TEM NECESSIDADE DE EXISTIR ESSES DOIS ENDPOINTS
+    /*@PutMapping("/{id}")
     public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody Usuario usuario) {
         usuario.setId(id);
         this.usuarioService.update(usuario);
@@ -43,5 +45,5 @@ public class UsuarioController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         this.usuarioService.delete(id);
         return ResponseEntity.noContent().build();
-    }
+    }*/
 }
