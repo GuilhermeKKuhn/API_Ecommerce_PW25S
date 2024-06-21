@@ -1,5 +1,6 @@
 package com.example.Ecommerce.model;
 
+import com.example.Ecommerce.annotation.UniqueUsername;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,6 +14,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.aspectj.bridge.IMessage;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,22 +34,24 @@ public class Usuario implements UserDetails {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotNull
+
+    @UniqueUsername
+    @NotNull(message = "username nao pode ser nulo")
     @Size(min = 4, max = 225)
     private String username;
 
-    @NotNull
+    @NotNull(message = "é necessario uma senha")
     @Size(min = 6)
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$")
     private String password;
 
-    @NotNull
+    @NotNull(message = "necessario um email")
     private String email;
 
-    @NotNull
+    @NotNull(message = "digite um endereço")
     private String endereco;
 
-    @NotNull
+    @NotNull(message = "insira um telefone")
     private String telefone;
 
     @Override

@@ -22,6 +22,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
 
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
+
 @EnableWebSecurity
 @Configuration
 public class WebSecurity {
@@ -65,6 +67,7 @@ public class WebSecurity {
                 .requestMatchers(HttpMethod.POST, "/usuario/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/categoria/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/produto/**").permitAll()
+                .requestMatchers(antMatcher("/error/**")).permitAll()
                 .anyRequest().authenticated()
         );
 

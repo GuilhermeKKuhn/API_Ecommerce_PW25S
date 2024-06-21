@@ -2,6 +2,7 @@ package com.example.Ecommerce.Controller;
 
 import com.example.Ecommerce.model.Usuario;
 import com.example.Ecommerce.service.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class UsuarioController {
     }
 
     @PostMapping()
-    public ResponseEntity<Void> save(@RequestBody Usuario usuario) {
+    public ResponseEntity<Void> save(@Valid @RequestBody Usuario usuario) {
         this.usuarioService.save(usuario);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(usuario.getId()).toUri();
         return ResponseEntity.created(uri).build();
