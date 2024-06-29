@@ -33,6 +33,12 @@ public class UsuarioController {
         return ResponseEntity.created(uri).build();
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<Usuario> getCurrentUser() {
+        Usuario currentUser = usuarioService.getUserLogado();
+        return ResponseEntity.ok().body(currentUser);
+    }
+
 
     // NAO TEM NECESSIDADE DE EXISTIR ESSES DOIS ENDPOINTS
     /*@PutMapping("/{id}")
