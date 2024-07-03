@@ -4,6 +4,8 @@ import com.example.Ecommerce.model.Categoria;
 import com.example.Ecommerce.model.Produto;
 import com.example.Ecommerce.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -58,5 +60,9 @@ public class ProdutoService {
 
     public List<Produto> findByNome(String nome) {
         return this.produtoRepository.findByNome(nome);
+    }
+
+    public Page<Produto> getProdutos(Pageable pageable) {
+        return produtoRepository.findAll(pageable);
     }
 }

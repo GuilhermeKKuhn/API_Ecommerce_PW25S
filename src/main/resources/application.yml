@@ -26,7 +26,7 @@ spring:
     activate:
       on-profile: dev-postgres
   datasource:
-    url: jdbc:postgresql://127.0.0.1:5432/ecommerce
+    url: jdbc:postgresql://127.0.0.1:5432/postgres
     username: postgres
     password: 123
   jpa:
